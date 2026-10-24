@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Srigee Admin</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/scrollbar.css" />
+</head>
+<body>
+
+<!-- LOGIN -->
+<section class="login" id="login">
+  <form id="loginForm" class="login-card">
+    <div class="logo"><span>Srigee</span><small>Admin Panel</small></div>
+    <label>Password</label>
+    <input type="password" id="pw" placeholder="Enter admin password" autocomplete="current-password" required />
+    <p class="err" id="loginErr"></p>
+    <button class="btn gold" type="submit">Login</button>
+  </form>
+</section>
+
+<!-- APP -->
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="logo"><span>Srigee</span><small>Admin Panel</small></div>
+    <nav>
+      <a class="on">Products</a>
+      <a href="index.html" target="_blank">View Store ↗</a>
+    </nav>
+    <button class="btn ghost" id="logout">Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div><h1>Products</h1><p>Add, edit or remove dresses. Changes show on the store in this browser instantly.</p></div>
+      <div class="actions">
+        <button class="btn ghost" id="importBtn">Import JSON</button>
+        <button class="btn ghost" id="exportJson">Backup JSON</button>
+        <button class="btn gold" id="exportJs">Export for Deploy</button>
+        <button class="btn red" id="addBtn">+ Add Product</button>
+      </div>
+    </header>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search dresses…" />
+      <button class="link" id="reset">Reset to default</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Photo</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="hint">After editing, click <b>Export for Deploy</b>. It downloads <code>products.js</code> (+ uploaded photos). Put <code>products.js</code> in <code>/js</code>, photos in <code>/assets/products</code>, then push to GitHub so Vercel updates the live site.</p>
+  </main>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal" id="modal" hidden>
+  <form class="modal-card" id="form">
+    <h2 id="mTitle">Add Product</h2>
+    <div class="two">
+      <div><label>Name</label><input id="fName" required /></div>
+      <div><label>Category</label><input id="fCat" list="catList" required placeholder="Gowns / Ethnic / Party…" /><datalist id="catList"></datalist></div>
+    </div>
+    <div class="two">
+      <div><label>Price (₹)</label><input id="fPrice" type="number" min="0" required /></div>
+      <div><label>Old price (₹, optional)</label><input id="fOld" type="number" min="0" /></div>
+    </div>
+    <div class="two">
+      <div><label>Badge (optional)</label><input id="fBadge" placeholder="New, Bestseller…" /></div>
+      <div><label>Availability</label><select id="fStock"><option value="1">In stock</option><option value="0">Sold out</option></select></div>
+    </div>
+    <label>Model photo</label>
+    <div class="upload">
+      <div class="preview" id="preview">No photo</div>
+      <div>
+        <input type="file" id="fFile" accept="image/*" />
+        <small>Upload a clear, high-quality model photo (portrait 3:4 works best). It is auto-resized.</small>
+        <input id="fImg" placeholder="…or image path / URL (e.g. assets/products/p2.jpg)" />
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn ghost" id="cancel">Cancel</button>
+      <button type="submit" class="btn gold">Save</button>
+    </div>
+  </form>
+</div>
+<input type="file" id="importFile" accept="application/json" hidden />
+<div class="toast" id="toast"></div>
+
+<script src="js/products.js"></script>
+<script src="js/store.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

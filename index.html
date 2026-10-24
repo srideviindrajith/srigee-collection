@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Srigee Collection | Where Elegance Meets Timeless Beauty</title>
+  <meta name="description" content="Exclusive designer dresses, gowns and ethnic wear by Srigee Collection." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/scrollbar.css" />
+</head>
+<body>
+
+
+
+<div class="page-bg"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+  <a href="#home" class="brand">
+    <span class="brand-main">Srigee</span>
+    <span class="brand-sub">Collection</span>
+  </a>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#feedback">Feedback</a>
+  </nav>
+
+  <div class="nav-icons">
+    <button aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+    <button aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button>
+    <button aria-label="Open cart" id="cartBtn" class="cart-btn">
+      <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+      <span class="badge" id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p class="welcome">Welcome to</p>
+    <h1 class="wordmark" aria-label="Srigee Collection">
+      <span class="wm-main"><i>S</i>RIGEE</span>
+      <span class="wm-sub"><b></b>COLLECTION<b></b></span>
+    </h1>
+    <h2 class="tagline">Where Elegance Meets<br/>Timeless Beauty</h2>
+    <p class="lead">Discover exclusive fashion collections designed<br/>to make you feel extraordinary, every day.</p>
+    <a href="#collection" class="btn-outline">Explore Collection <span>&rarr;</span></a>
+  </div>
+
+  <div class="dress-stage" id="stage">
+    <canvas id="dressCanvas"></canvas>
+    <div class="reveal-ring" id="ring"></div>
+    <video id="dressVideo" muted loop playsinline autoplay preload="auto">
+      <source src="assets/video/dress.mp4" type="video/mp4" />
+    </video>
+  </div>
+</section>
+
+<!-- ============ SHOP ============ -->
+<section class="section" id="collection">
+  <div class="head reveal">
+    <p class="eyebrow">The Collection</p>
+    <h2>Dresses made to be remembered</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="filters reveal" id="filters"></div>
+
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="about-card reveal">
+    <div>
+      <p class="eyebrow">About Us</p>
+      <h2>Fashion with a little<br/>wingbeat of magic</h2>
+      <p>Srigee Collection began with one idea: every woman deserves a dress that makes her feel like the main character. Each piece is designed with rich fabrics, delicate detailing and a finish that looks as good in person as it does in photographs.</p>
+      <p>From elegantly embroidered gowns to heritage ethnic wear, we blend modern silhouettes with timeless craft.</p>
+    </div>
+    <div class="stats">
+      <div><strong data-count="500">0</strong><span>Designs</span></div>
+      <div><strong data-count="10000">0</strong><span>Happy Customers</span></div>
+      <div><strong data-count="28">0</strong><span>States Delivered</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="head reveal">
+    <p class="eyebrow">Services</p>
+    <h2>Beyond the dress</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="cards3">
+    <article class="svc reveal"><h3>Custom Stitching</h3><p>Your measurements, your design. Made-to-fit dresses crafted by our tailors.</p></article>
+    <article class="svc reveal"><h3>Bridal &amp; Occasion</h3><p>Reception gowns, engagement looks and party wear styled for your big day.</p></article>
+    <article class="svc reveal"><h3>Personal Styling</h3><p>Not sure what suits you? Our stylists help you pick the perfect outfit.</p></article>
+    <article class="svc reveal"><h3>Express Delivery</h3><p>Fast, insured shipping with easy returns and size exchanges.</p></article>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="head reveal">
+    <p class="eyebrow">Projects</p>
+    <h2>Signature collections</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="cards3" id="lookbook"></div>
+</section>
+
+<!-- ============ FEEDBACK ============ -->
+<section class="section" id="feedback">
+  <div class="head reveal">
+    <p class="eyebrow">Feedback</p>
+    <h2>Loved by our customers</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="cards3">
+    <blockquote class="quote reveal"><div class="stars">★★★★★</div><p>The gown looked even better than the photos. Fit was perfect and everyone asked where I got it!</p><cite>Customer name, City</cite></blockquote>
+    <blockquote class="quote reveal"><div class="stars">★★★★★</div><p>Beautiful stitching and fabric quality. Delivery was quick and packing was so premium.</p><cite>Customer name, City</cite></blockquote>
+    <blockquote class="quote reveal"><div class="stars">★★★★★</div><p>Custom stitching exactly the way I wanted. Will definitely order again for my sister's wedding.</p><cite>Customer name, City</cite></blockquote>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="brand"><span class="brand-main">Srigee</span><span class="brand-sub">Collection</span></div>
+  <p>Where Elegance Meets Timeless Beauty</p>
+  <small>&copy; <span id="yr"></span> Srigee Collection. All rights reserved.</small>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="drawer-head"><h3>Your Bag</h3><button id="closeCart" aria-label="Close">&times;</button></div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Subtotal</span><strong id="cartTotal">₹0</strong></div>
+    <button class="btn-solid" id="checkoutBtn">Proceed to Checkout</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script src="js/products.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/hero-canvas.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
