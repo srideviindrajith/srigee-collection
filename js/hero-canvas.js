@@ -1,6 +1,7 @@
 /* Rotating dress video -> canvas
    1. White video background is keyed out (transparent), so the dress sits on the hero background.
-   2. Dress is shown desaturated (silver). Real colour appears only around the mouse pointer.
+   2. Dress is shown white. Real colour appears only around the mouse pointer.
+      (Old silver look: gray = lum * 0.9 + 28)
    The <video> keeps looping, so the dress keeps rotating. */
 (function () {
   const video = document.getElementById('dressVideo');
@@ -55,7 +56,8 @@
         let fr = (R - mn) / a, fg = (G - mn) / a, fb = (B - mn) / a;   // un-mix from white
         if (fr > 255) fr = 255; if (fg > 255) fg = 255; if (fb > 255) fb = 255;
         const lum = 0.3 * fr + 0.59 * fg + 0.11 * fb;
-        const gray = lum * 0.9 + 28;             // silver tone, lifted so it shows on dark bg
+        let gray = 175 + lum * 0.45;             // WHITE gown: bright base, folds keep soft shading
+        if (gray > 255) gray = 255;
         let k = 0;
         if (r > 1 && x >= x0 && x < x1 && y >= y0 && y < y1) {
           const dx = x - m.x, dy = y - m.y, dd = dx * dx + dy * dy;
