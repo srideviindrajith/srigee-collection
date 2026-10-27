@@ -13,7 +13,8 @@
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   const CROP_TOP = 0.235;      // top part of the video to cut off. Use 0 for a new video with no logo/watermark
   const MAX_H = 760;           // canvas height cap, keeps HD / 4K videos smooth
-  const REVEAL_R = 0.36;       // spotlight radius (fraction of canvas width)
+  const SKIN_FAIR = 0.30;      // 0 = natural video skin, higher = fairer / whiter skin (try 0.4 for more)
+  const REVEAL_R = 0.36;      // spotlight radius (fraction of canvas width)
   let W = 0, H = 0, SY = 0, SW = 0, SH = 0, SKIN_Y = 0, HAIR_Y = 0;
   const m = { x: 0, y: 0, tx: 0, ty: 0, r: 0, tr: 0 };
   let last = 0, failed = false;
@@ -60,14 +61,15 @@
         let gray = 205 + lum * 0.3;              // WHITE gown: bright base, folds keep soft shading
         if (gray > 255) gray = 255;
         // keep the model's real skin + hair colour (use the raw video pixel, not the un-mixed one)
-        let keep = false, kr = fr, kg = fg, kb = fb;
+        let keep = false, skin = false, kr = fr, kg = fg, kb = fb;
         if (y < SKIN_Y) {
           const mx = R > G ? (R > B ? R : B) : (G > B ? G : B);
           const sat = (mx - mn) / (mx || 1);
           const hue = 60 * (G - B) / ((mx - mn) || 1);
           const rl = 0.3 * R + 0.59 * G + 0.11 * B;
           if (R >= G && G >= B && sat > 0.12 && sat < 0.55 && rl > 95 && hue > 8 && hue < 42) {
-            keep = true; kr = R; kg = G; kb = B;                       // skin
+            keep = true; skin = true;                                  // skin: natural, a little fairer
+            kr = R + (255 - R) * SKIN_FAIR; kg = G + (255 - G) * SKIN_FAIR; kb = B + (255 - B) * SKIN_FAIR;
           }
         }
         if (!keep && y < HAIR_Y && Math.abs(x / W - 0.5) < 0.13) keep = true;   // hair + hair flower
@@ -81,9 +83,11 @@
           }
         }
         const br = keep ? kr : gray, bg = keep ? kg : gray, bb = keep ? kb : gray;
-        d[i]     = br + (fr - br) * k;
-        d[i + 1] = bg + (fg - bg) * k;
-        d[i + 2] = bb + (fb - bb) * k;
+        // skin never turns orange inside the mouse spotlight: its "revealed" colour is the same natural skin colour
+        const tr = skin ? kr : fr, tg = skin ? kg : fg, tb = skin ? kb : fb;
+        d[i]     = br + (tr - br) * k;
+        d[i + 1] = bg + (tg - bg) * k;
+        d[i + 2] = bb + (tb - bb) * k;
         d[i + 3] = t * 255;
       }
     }
